@@ -1,4 +1,4 @@
-import online_shop as os
+import week1.online_shop as os
 
 assert os.endpreis(10, 12, 18, 22) == 55.3
 print(os.endpreis(10, 12, 18, 22))

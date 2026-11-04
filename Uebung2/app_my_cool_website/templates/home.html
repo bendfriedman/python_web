@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Home – {{ site_name }}{% endblock %}
+
+{% block header %}
+    <h1>Hello {{ name }}!</h1>
+{% endblock %}
+
+{% block content %}
+    <p>My favourite languages:</p>
+    <ul>
+        {% for lang in languages %}
+            <li>{{ lang | upper }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block footer %}
+    <p>{{ block.super }} {{ site_name }}. All rights reserved.</p>
+{% endblock %}

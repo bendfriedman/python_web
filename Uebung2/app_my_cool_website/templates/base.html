@@ -1,0 +1,13 @@
+{% load static %}
+<!doctype html>
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}My Cool Website{% endblock %}</title>
+  <link rel="stylesheet" href="{% static "main.css" %}" />
+</head>
+<body>
+    <header>{% block header %}<h1>{{ site_name }}</h1>{% endblock %}</header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>{% block footer %}© {{ year }}{% endblock %}</footer>
+</body>
+</html>
