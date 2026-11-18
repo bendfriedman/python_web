@@ -1,5 +1,5 @@
 """
-URL configuration for myCoolWebsite project.
+URL configuration for DjangoModelsClassViewsDemo project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.1/topics/http/urls/
@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app/', include('app_my_cool_website.urls')),
+    path('useradmin/', include('django.contrib.auth.urls')),
+    path('useradmin/', include('UserAdmin.urls')),
+    path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('books/', include('Books.urls')),
 ]
