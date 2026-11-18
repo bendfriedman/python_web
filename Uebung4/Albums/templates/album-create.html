@@ -1,0 +1,22 @@
+{% extends 'album-base.html' %}
+
+{% block title %}Add album{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h2>Add album</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add album</button>
+        </form>
+
+        <a href="{% url 'album-list' %}">Back to all albums</a>
+    {% else %}
+        <p>You must log in to add albums</p>
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+{% endblock %}
