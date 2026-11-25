@@ -1,0 +1,23 @@
+{% extends 'album-base.html' %}
+
+{% block title %}Album list{% endblock %}
+
+{% block content %}
+    <h2>Album list</h2>
+
+    {% if album_list %}
+        <ul>
+            {% for single_album in album_list %}
+                <li>
+                    <a href="{% url 'album-detail' single_album.pk %}">
+                        {{ single_album.title }} / {{ single_album.artist }} / {{ single_album.get_genre_display }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No albums available yet.</p>
+    {% endif %}
+
+    <a class="button" href="{% url 'album-create' %}">Add a new album</a>
+{% endblock %}

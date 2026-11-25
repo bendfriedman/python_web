@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+    font-size: 18px;
+    background-color: #f4f1ea;
+    color: #2b2b2b;
+}
+
+h2 {
+    color: darkslateblue;
+    border-bottom: 2px solid darkslateblue;
+    padding-bottom: 6px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+td {
+    padding: 4px 20px 4px 0;
+    vertical-align: top;
+}
+
+.button, button {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: darkslateblue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.delete {
+    background-color: firebrick;
+}

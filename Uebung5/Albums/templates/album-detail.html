@@ -1,0 +1,20 @@
+{% extends 'album-base.html' %}
+
+{% block title %}Album detail{% endblock %}
+
+{% block content %}
+    <h2>Album detail</h2>
+
+    <table>
+        <tr><td><b>Title:</b></td><td>{{ single_album.title }}</td></tr>
+        <tr><td><b>Artist / Band:</b></td><td>{{ single_album.artist }}</td></tr>
+        <tr><td><b>Genre:</b></td><td>{{ single_album.get_genre_display }}</td></tr>
+        <tr><td><b>Description:</b></td><td>{{ single_album.description|linebreaksbr }}</td></tr>
+        <tr><td><b>Created by:</b></td><td>{{ single_album.user }}</td></tr>
+        <tr><td><b>Created at:</b></td><td>{{ single_album.created_at|date:"d.m.Y H:i" }}</td></tr>
+    </table>
+
+    <br>
+    <a class="button delete" href="{% url 'album-delete' single_album.pk %}">Delete album</a>
+    <a href="{% url 'album-list' %}">Back to all albums</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/albums_style.css' %}">
+{% endblock %}
+
+{% block header %}
+    <h1>Music Albums</h1>
+    <a href="{% url 'home' %}">Home</a> | <a href="{% url 'album-list' %}">All albums</a>
+{% endblock %}
+
+{% block footer %}
+    <p>© Music Albums. All rights reserved.</p>
+{% endblock %}
