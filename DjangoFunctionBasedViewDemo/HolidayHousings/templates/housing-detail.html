@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/housings_styles.css' %}">
+{% endblock %}
+
+{% block title %}Housing details{% endblock %}
+
+{% block content %}
+
+    <h2>Housing detail</h2>
+
+    <table>
+    <tr>
+        <td><b>Title:</b></td>
+        <td>{{ single_housing.title }}</td>
+    </tr>
+    <tr>
+        <td><b>Housing type:</b></td>
+        <td>{{ single_housing.get_type_display }}</td>
+    </tr>
+    <tr>
+        <td><b>Cost class:</b></td>
+        <td>{{ single_housing.get_costs_display }}</td>
+    </tr>
+    <tr>
+        <td><b>Location type:</b></td>
+        <td>{{ single_housing.get_location_display }}</td>
+    </tr>
+    <tr>
+        <td><b>Number of rooms:</b></td>
+        <td>{{ single_housing.rooms }}</td>
+    </tr>
+    <tr>
+        <td><b>Special feature:</b></td>
+        <td>{{ single_housing.specials }}</td>
+    </tr>
+    </table>
+
+    <br>
+    <a href="{% url 'housing-list' %}">
+        Back to all housings
+    </a>
+
+{% endblock %}

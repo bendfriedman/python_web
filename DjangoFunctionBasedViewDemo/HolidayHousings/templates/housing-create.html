@@ -1,0 +1,69 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/housings_styles.css' %}">
+{% endblock %}
+
+{% block title %}Add holiday housing{% endblock %}
+
+{% block logged_in_content %}
+<h2>Add a new holiday housing</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- used Django to implement the form -->
+        {{ form.title.label }}: {{ form.title }}
+        <br><br>
+
+        {{ form.type.label }}: {{ form.type }}
+        <br><br>
+
+        {{ form.location.label }}: {{ form.location }}
+        <br><br>
+
+        <!-- used manual HTML to implement the form -->
+        <!-- note: is error prone! -->
+        <label for="id_costs">Cost class:</label>
+
+        <select id="id_costs" type="text" name="costs">
+            <option value="">---------</option>
+            <option value="C">cheap</option>
+            <option value="A">affordable</option>
+            <option value="E">expensive</option>
+            <option value="L">luxury</option>
+        </select>
+        <br><br>
+
+        <!-- used both standard HTML as Django to create the form -->
+        <label for="{{ form.rooms.id_for_label }}">
+            {{ form.rooms.label }}:
+        </label>
+
+        <input
+                id="{{ form.rooms.id_for_label }}"
+                type="{{ form.rooms.field.widget.input_type }}"
+                name="{{ form.rooms.html_name }}"
+        >
+        rooms
+        <br>
+        <br>
+
+        <label for="{{ form.specials.id_for_label }}">
+            {{ form.specials.label }}:
+        </label>
+
+        <input
+                id="{{ form.specials.id_for_label }}"
+                type="{{ form.specials.field.widget.input_type }}"
+                name="{{ form.specials.html_name }}"
+        >
+        <br>
+        <br>
+
+{#        To give Django full control use "form.as_p" #}
+{#        {{ form.as_p }}#}
+
+        <button type="submit">Add housing</button>
+    </form>
+{% endblock %}

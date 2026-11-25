@@ -1,0 +1,34 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/housings_styles.css' %}">
+{% endblock %}
+
+{% block title %}Holiday Housings List{% endblock %}
+
+{% block content %}
+
+    <h2>Holiday Housings</h2>
+
+    {% if all_housings %}
+        {% for housing in all_housings %}
+
+            <div>
+                <p>{{ housing }}</p>
+                <a href="{% url 'housing-detail' housing.pk %}">
+                    Show housing
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No housings available yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'housing-create' %}">
+        Add a new holiday housing
+    </a>
+    <br>
+
+{% endblock %}
