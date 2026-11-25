@@ -20,19 +20,29 @@ def album_detail(request, pk):
 def album_create(request):
 
     if request.method == 'POST':
-        # fill the Django form with the submitted data
+        # fill form with the submitted data
         form = AlbumForm(request.POST)
 
         if form.is_valid():
-            new_album = form.save(commit=False)   # build the object, don't save yet
+            new_album = form.save(commit=False)
             new_album.user = request.user
             new_album.save()
             return redirect('album-detail', pk=new_album.pk)
 
-        # Invalid: fall through to render() below, and the form shows its errors
-
     else:
-        # GET: the page is opened for the first time, so show an empty form
+        # GET: page is opened for first time, so show an empty form
         form = AlbumForm()
 
     return render(request, 'album-create.html', {'form': form})
+
+
+@login_required
+def album_delete(request, pk):
+    single_album = Album.objects.get(id=pk)
+
+    if request.method == 'POST':
+        Album.objects.filter(id=pk).delete()
+        return redirect('album-list')
+
+    # GET: show confirmation page
+    return render(request, 'album-delete.html', {'single_album': single_album})

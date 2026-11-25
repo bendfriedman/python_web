@@ -1,0 +1,53 @@
+{% extends 'album-base.html' %}
+
+{% block title %}Add album{% endblock %}
+
+{% block content %}
+    <h2>Add album</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-row">
+            <label for="{{ form.title.id_for_label }}">{{ form.title.label }}:</label>
+            <input id="{{ form.title.id_for_label }}" type="text"
+                   name="{{ form.title.html_name }}"
+                   maxlength="{{ form.title.field.max_length }}" required
+                   value="{{ form.title.value }}">
+            {{ form.title.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="{{ form.artist.id_for_label }}">{{ form.artist.label }}:</label>
+            <input id="{{ form.artist.id_for_label }}" type="text"
+                   name="{{ form.artist.html_name }}"
+                   maxlength="{{ form.artist.field.max_length }}" required
+                   value="{{ form.artist.value }}">
+            {{ form.artist.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="{{ form.genre.id_for_label }}">{{ form.genre.label }}:</label>
+            <select id="{{ form.genre.id_for_label }}" name="{{ form.genre.html_name }}" required>
+                {% for value, label in form.genre.field.choices %}
+                    <option value="{{ value }}" {% if form.genre.value == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            {{ form.genre.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}:</label>
+            <textarea id="{{ form.description.id_for_label }}"
+                      name="{{ form.description.html_name }}"
+                      rows="5">{{ form.description.value }}</textarea>
+            {{ form.description.errors }}
+        </div>
+
+        <button type="submit">Add album</button>
+    </form>
+
+    <br>
+    <a href="{% url 'album-list' %}">Back to all albums</a>
+{% endblock %}
